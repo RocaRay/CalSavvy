@@ -7,7 +7,7 @@ Logic - Users will be able to click buttons to add pre-stored food items to thei
   - Food Buttons: bagel, apple, banana, cup noodle, taki, welch's, Hidden Valley granola bar, etc.
   - Log Day: adds totals to database
 
-**Back End**
+**Back End**+++
 - will be displayed on port 8888
 - get requests to root will be main display
 - Stretch: redirect to different page to view all logs?
@@ -38,3 +38,13 @@ Logic - Users will be able to click buttons to add pre-stored food items to thei
     cupNoodle: 1
   }
 }
+
+
+/* Pre-Tasks */
+npm install --save-dev @babel/core @babel/preset-env @babel/preset-react webpack webpack-cli webpack-dev-server babel-loader css-loader style-loader html-webpack-plugin
+
+- use "npm run start2" to run the dev server for creating front end
+
+/* Where Did I Leave Off */
+- how to connect front end to back end?
+
