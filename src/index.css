@@ -1,0 +1,47 @@
+body{
+  background: rgb(63, 146, 63);
+  font-family: sans-serif;
+}
+
+#FoodDisplay{
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid;
+}
+
+#FoodDisplay > div{
+  /* border: 1px solid blue; */
+  margin: 30px;
+}
+
+#ButtonsContainer{
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 20%;
+  border: 2px solid;
+  width: auto;
+  height: 10%;
+}
+
+button{
+  height: 40px;
+  width: 100px;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.foodItem{
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+#TotalCaloriesDisplay{
+  float: right;
+  margin-right: 10%;
+}
+
+#LogDayButton{
+  color: white;
+  background: blue;
+}
