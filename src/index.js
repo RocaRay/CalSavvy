@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 require('./index.css');
 import FoodDisplay from '../Components/FoodDisplay.jsx';
 import ButtonsContainer from '../Containers/ButtonsContainer.jsx';
+import LogDisplay from '../Components/LogDisplay.jsx';
 
 class App extends Component {
   constructor(props){
@@ -11,10 +12,12 @@ class App extends Component {
     this.state = {
       eaten: {},
       totalCalories: 0,
-      detailedCalories: {}
+      detailedCalories: {},
+      mode: "track" 
     };
     this.addItemAndCalories = this.addItemAndCalories.bind(this);
     this.logDay = this.logDay.bind(this);
+    this.toggleDisplay = this.toggleDisplay.bind(this);
   }
 
   addItemAndCalories(item, amount) {
@@ -27,6 +30,7 @@ class App extends Component {
     else newDetailedCalories[item] += amount;
     
     this.setState({
+      ...this.state,
       eaten: newEaten,
       totalCalories: newCalories,
       detailedCalories: newDetailedCalories
@@ -34,6 +38,7 @@ class App extends Component {
   }
 
   logDay() {
+    if (this.state.totalCalories == 0) return ; 
     fetch('/', {
       method: "Post",
       headers: {
@@ -48,20 +53,42 @@ class App extends Component {
     }).then(response => response.json());
 
     this.setState({
+      ...this.state,
       eaten: {},
       totalCalories: 0,
       detailedCalories: {}
     })
   }
+
+  toggleDisplay() {
+    let mode = this.state.mode;
+    if (this.state.mode === "track") mode = "log";
+    else mode = "track";
+    this.setState({
+      ...this.state,
+      mode
+    })
+  }
   
   render() {
+    let topContainer;
+    if (this.state.mode === "track") {
+      topContainer = (<div className="container">
+      <FoodDisplay eaten={this.state.eaten} totalCalories={this.state.totalCalories} detailedCalories={this.state.detailedCalories}/>
+    </div>)
+    }
+    if (this.state.mode === "log") {
+      topContainer = (
+        <div className="container"><LogDisplay/></div>
+      )
+    }
+
     return (
       <div>
-        <div className="container">
-          <FoodDisplay eaten={this.state.eaten} totalCalories={this.state.totalCalories} detailedCalories={this.state.detailedCalories}/>
-        </div>
+        <h1 id="title">CodeSmith Calorie Tracker</h1>
+        {topContainer}
         <div id="ButtonsContainer">
-          <ButtonsContainer addItemAndCalories={this.addItemAndCalories} logDay={this.logDay}/>
+          <ButtonsContainer addItemAndCalories={this.addItemAndCalories} logDay={this.logDay} toggleDisplay={this.toggleDisplay}/>
         </div>
       </div>
     )

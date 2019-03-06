@@ -1,6 +1,14 @@
 body{
   background: rgb(63, 146, 63);
   font-family: sans-serif;
+  /* display: flex; */
+  justify-content: center;
+  /* height: 100vh; */
+}
+
+#title{
+  display: flex;
+  justify-content: center;
 }
 
 #FoodDisplay{
@@ -21,7 +29,6 @@ body{
   bottom: 20%;
   border: 2px solid;
   width: auto;
-  height: 10%;
 }
 
 button{

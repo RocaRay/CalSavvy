@@ -12,6 +12,7 @@ app.use(express.static('dist'))
 //   res.sendFile(path.resolve(__dirname, './dist/index.html'));
 // })
 
+app.get('/showAllDays', foodController.showAllLogs)
 app.post('/', bodyParser.json(), foodController.postItem)
 
 app.listen(8888, () => {

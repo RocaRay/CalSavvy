@@ -10,7 +10,7 @@ class ButtonsContainer extends Component {
         <FoodButton name="Banana" calorieAmount={105} addItemAndCalories={this.props.addItemAndCalories}/>
         <FoodButton name="Cup Noodles" calorieAmount={290} addItemAndCalories={this.props.addItemAndCalories}/>
         <button id="LogDayButton" onClick={this.props.logDay}>Log Day</button>
-        <button>Show All Days</button>
+        <button onClick={this.props.toggleDisplay}>Show All Days</button>
       </div>
     )
   }

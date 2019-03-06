@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-
-
 const FoodDisplay = props => {
   let foodArray = [];
   let amountsArray = [];
