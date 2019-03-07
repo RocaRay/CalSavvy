@@ -1,43 +1,75 @@
 import React, { Component } from 'react';
 
-const LogDisplay = props => {
-  let datesArray = [], ateArray = [], totalCaloriesArray = [];
-  let superTotalCalories = 0;
-  //Use lifecycle method: this code is not finishing before the render (?)
-  fetch('/showAllDays')
+
+
+class LogDisplay extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      toRender: [(
+        <div className="logHeaderRow">
+          <div className="logHeaderItem">
+            <h3>Date</h3>
+          </div>
+          <div className="logHeaderItem">
+            <h3>Eaten</h3>
+          </div>
+          <div className="logHeaderItem">
+            <h3>Cals</h3>
+          </div>
+        </div>)],
+      superTotalCalories: 0
+    }
+  }
+
+  componentDidMount() {
+    fetch('/showAllDays')
     .then(response => response.json())
     .then(data => {
-      console.log(data);
       data.forEach(dayObj => {
-        datesArray.push(dayObj.date);
-        ateArray.push(dayObj.eaten);
-        totalCaloriesArray.push(dayObj.totalCalories);
+        //overall total cals
+        let superTotalCalories = this.state.superTotalCalories;
         superTotalCalories += dayObj.totalCalories;
+
+        //handle "eaten" property objects
+        let eatenArray = [];
+        Object.entries(dayObj.eaten).forEach( (pair, index) => {
+          eatenArray.push(<p className="eatenItem" key={index + 'pair'}>{pair[0]} : {pair[1]}</p>)
+        })
+
+        let newToRender = [...this.state.toRender];
+
+        newToRender.push((
+        <div className="LogRow">
+          <div className="LogRowItem">
+            {new Date(dayObj.date).toLocaleString()}
+          </div>
+          <div className="LogRowItem">
+            {eatenArray} 
+          </div>
+          <div className="LogRowItem">
+            {dayObj.totalCalories} cal
+          </div>
+        </div>))
+
+        this.setState({
+          toRender: newToRender,
+          superTotalCalories
+        })
       })
-      
-
     })
-  return (
-    <div>
-      <div id="FoodDisplay">
-        <div>
-          <h3>Date</h3>
-          <div>{datesArray}</div>
-        </div>
-        
-        <div>
-          <h3>Ate</h3>
-          <div>{ateArray}</div>
-        </div>
+  }
 
-        <div>
-          <h3>Day Total</h3>
-          <div>{totalCaloriesArray}</div>
+  render() {
+    return (
+      <div className="topContainer">   
+        <div id="LogDisplay">
+          {this.state.toRender}
         </div>
+        <p id="TotalCaloriesDisplay">Total Calories: {this.state.superTotalCalories}</p>
       </div>
-      <p id="TotalCaloriesDisplay">Total Calories: {superTotalCalories}</p>
-    </div>
-  )
+    )
+  }
 }
 
 export default LogDisplay;

@@ -9,7 +9,10 @@ module.exports = {
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: './dist'
+    contentBase: './dist',
+    proxy: {
+      '/': 'http://localhost:8888'
+    }
   },
   module: {
     rules: [
@@ -18,7 +21,8 @@ module.exports = {
         exclude: /node_modules/,
         use: ['babel-loader']
       },
-      { test: /\.css$/, use: [ 'style-loader', 'css-loader' ] }
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+      { test: /\.(jpeg|png|jpg)$/, use: ['url-loader']}
     ]
   },
   resolve: {

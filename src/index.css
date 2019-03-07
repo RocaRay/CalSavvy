@@ -1,20 +1,32 @@
+html {
+  min-height: 100%;
+  position: relative;
+}
+
 body{
-  background: rgb(63, 146, 63);
+  background: url('./assets/kitchen.jpg') no-repeat fixed;
+  clear: both;
+  margin-bottom: 10px;
+  background-size: cover;
   font-family: sans-serif;
-  /* display: flex; */
-  justify-content: center;
-  /* height: 100vh; */
 }
 
 #title{
   display: flex;
+  width: 50%;
+  margin: auto;
   justify-content: center;
+  background: rgba(15, 48, 129, 0.849);
+  color: white;
+  border: 1px solid;
 }
 
 #FoodDisplay{
   display: flex;
   justify-content: space-around;
   border: 1px solid;
+  background: rgba(15, 48, 129, 0.849);
+  color: white;
 }
 
 #FoodDisplay > div{
@@ -22,20 +34,48 @@ body{
   margin: 30px;
 }
 
+.topContainer{
+  margin-bottom: 200px;
+}
 #ButtonsContainer{
   display: flex;
   justify-content: center;
   position: fixed;
-  bottom: 20%;
+  bottom: 0;
+  left: 0;
+  right: 0;
   border: 2px solid;
-  width: auto;
+  height: auto;
+  width: 100%;
+  background: black;
+}
+
+#lowerButtonsContainer{
+  display: flex;
+  justify-content: flex-end;
+}
+
+#customInputForm{
+  margin-top: 1em;
+}
+
+#customInputForm > input{
+  margin: 3px;
 }
 
 button{
   height: 40px;
-  width: 100px;
+  width: 15s0px;
   border-radius: 10px;
   margin: 10px;
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+.FoodImage{
+  height: 30px;
 }
 
 .foodItem{
@@ -46,9 +86,63 @@ button{
 #TotalCaloriesDisplay{
   float: right;
   margin-right: 10%;
+  background: rgba(15, 48, 129, 0.849);
+  color: white;
+  border: 1px solid;
+  padding: 10px;
 }
 
 #LogDayButton{
   color: white;
   background: blue;
+}
+
+#ShowAllDaysButton{
+  color: white;
+  background: purple;
+}
+
+#DeleteLogsButton{
+  color: white;
+  background: red;
+}
+
+.logheader{
+  display: flex;
+  justify-content: space-around;
+}
+
+.logHeaderRow{
+  display: flex;
+  justify-content: space-around;
+}
+
+.logHeaderItem{
+  margin-left: 5%;
+}
+
+#LogDisplay{
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid;
+  background: rgba(15, 48, 129, 0.849);
+  color: white;
+}
+
+.LogRow{
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid white;
+}
+
+.LogRowItem{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.eatenItem{
+  margin: 0.1em;
 }

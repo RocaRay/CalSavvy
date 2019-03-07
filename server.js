@@ -6,14 +6,11 @@ const path = require('path');
 
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
-app.use(express.static('dist'))
+app.use(express.static('dist'));
 
-// app.get('/', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, './dist/index.html'));
-// })
-
-app.get('/showAllDays', foodController.showAllLogs)
-app.post('/', bodyParser.json(), foodController.postItem)
+app.get('/showAllDays', foodController.showAllLogs);
+app.post('/', bodyParser.json(), foodController.postItem);
+app.delete('/', foodController.deleteAllItems);
 
 app.listen(8888, () => {
   console.log('Listening on port 8888');

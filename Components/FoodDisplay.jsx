@@ -17,7 +17,7 @@ const FoodDisplay = props => {
   })
     
   return (
-    <div>
+    <div className="topContainer">
       <div id="FoodDisplay">
         <div>
           <h3>Food</h3>

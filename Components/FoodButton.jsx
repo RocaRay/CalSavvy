@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 const FoodButton = props => {
     return (
-      <button onClick={(event) => props.addItemAndCalories(event.target.innerHTML, props.calorieAmount) }>{props.name}</button>
+      <button className="FoodButtonClass" onClick={(event) => props.addItemAndCalories(props.name, props.calorieAmount) }>{props.name}<img className="FoodImage" src={props.src}></img></button>
     )
 }
-
+// <img src={props.src}></img>
+// {props.name}
 export default FoodButton;

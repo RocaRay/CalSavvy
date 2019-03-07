@@ -1,6 +1,8 @@
 import React from 'react';
 const { Component } = require('react');
 import ReactDOM from 'react-dom';
+import Modal from 'react-modal';
+Modal.setAppElement('#app');
 require('./index.css');
 import FoodDisplay from '../Components/FoodDisplay.jsx';
 import ButtonsContainer from '../Containers/ButtonsContainer.jsx';
@@ -62,8 +64,27 @@ class App extends Component {
 
   toggleDisplay() {
     let mode = this.state.mode;
-    if (this.state.mode === "track") mode = "log";
-    else mode = "track";
+    let buttonsCollection = document.getElementsByClassName('FoodButtonClass');
+    if (this.state.mode === "track") {
+      mode = "log";
+      for (let i = 0; i < buttonsCollection.length; i++){ //enable food btns
+        buttonsCollection[i].disabled = true;
+      }
+      document.getElementById('LogDayButton').disabled = true;
+      document.getElementById('foodinput').disabled = true;
+      document.getElementById('calorieinput').disabled = true;
+      document.getElementById('customsubmit').disabled = true;
+    }
+    else {
+      mode = "track";
+      for (let i = 0; i < buttonsCollection.length; i++){ //disable food btns
+        buttonsCollection[i].disabled = false;
+      }
+      document.getElementById('LogDayButton').disabled = false;
+      document.getElementById('foodinput').disabled = false;
+      document.getElementById('calorieinput').disabled = false;
+      document.getElementById('customsubmit').disabled = false;
+    }
     this.setState({
       ...this.state,
       mode
@@ -85,8 +106,8 @@ class App extends Component {
 
     return (
       <div>
-        <h1 id="title">CodeSmith Calorie Tracker</h1>
-        {topContainer}
+        <h2 id="title">CodeSmith Calorie Tracker</h2>
+          {topContainer}
         <div id="ButtonsContainer">
           <ButtonsContainer addItemAndCalories={this.addItemAndCalories} logDay={this.logDay} toggleDisplay={this.toggleDisplay}/>
         </div>

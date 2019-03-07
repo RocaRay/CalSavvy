@@ -1,10 +1,12 @@
 const Food = require('../Data/foodModel.js') //import Food model
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://rocaray:hunter2@raymdb-snjyo.mongodb.net/test?retryWrites=true";
+const uri = "mongodb+srv://rocaray:hunter2@raymdb-snjyo.mongodb.net/soloproject?retryWrites=true"; 
+//uri: mongodb+srv://<username>:<password>@raymdb-snjyo.mongodb.net/<database name>?retryWrites=true
+
 
 module.exports = {
   postItem: function(req, res) {
-    console.log('req.body', req.body)
+    // console.log('req.body', req.body)
     mongoose.connect(uri, { useNewUrlParser: true });
     mongoose.connection.once('open', () => {
       console.log('connected to database');
@@ -40,5 +42,14 @@ module.exports = {
       })
         
       })
+  },
+
+  deleteAllItems: function(req, res) {
+    mongoose.connect(uri, { useNewUrlParser: true });
+    Food.deleteMany({}, (err, result) => {
+      if (err) console.log('delete err');
+      if (result) console.log('delete success', result);
+      return res.send('delete success');
+    })
   }
 }

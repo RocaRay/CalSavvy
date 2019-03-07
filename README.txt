@@ -42,9 +42,3 @@ Logic - Users will be able to click buttons to add pre-stored food items to thei
 
 /* Pre-Tasks */
 npm install --save-dev @babel/core @babel/preset-env @babel/preset-react webpack webpack-cli webpack-dev-server babel-loader css-loader style-loader html-webpack-plugin
-
-- use "npm run start2" to run the dev server for creating front end
-
-/* Where Did I Leave Off */
-- how to connect front end to back end?
-
