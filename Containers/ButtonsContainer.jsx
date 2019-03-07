@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
+Modal.setAppElement('#app');
 import FoodButton from '../Components/FoodButton';
 import bagelImage from '../src/assets/bagel.jpeg';
 import appleImage from '../src/assets/apple.jpeg';
@@ -66,8 +67,11 @@ class ButtonsContainer extends Component {
           <button id="LogDayButton" onClick={this.props.logDay}>Log Day</button>
           <button id="ShowAllDaysButton" onClick={this.props.toggleDisplay}>Show All Days</button>
           <button id="DeleteLogsButton" onClick={this.openModal}>Delete All Logs</button>
-          <Modal isOpen={this.state.modalOpen}>
-            <p>Are you sure you want to delete your logs?</p>
+          <Modal className="modal" isOpen={this.state.modalOpen}
+           style={{
+            'background-color': 'red',
+          }}>
+            <p>Are you sure you want to delete your data?</p>
             <button onClick={this.deleteAllLogs}>Yes</button> 
             <button onClick={this.closeModal}>Cancel</button>
           </Modal>

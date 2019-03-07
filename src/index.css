@@ -107,6 +107,24 @@ button:hover{
   background: red;
 }
 
+.modal{
+  background: white;
+  border-radius: 10px;
+  margin: 10px auto;
+  width: 50%;
+  box-shadow: black 10px 10px 10px;
+}
+
+.modal > button{
+  width: 100px;
+  font-size: 1em;
+  box-shadow: black 2px 3px 10px;
+}
+
+.modal > p{
+  padding: 5% 20% 0% 5%;
+}
+
 .logheader{
   display: flex;
   justify-content: space-around;

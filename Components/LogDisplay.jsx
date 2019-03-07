@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-
-
 class LogDisplay extends Component {
   constructor (props) {
     super(props);
