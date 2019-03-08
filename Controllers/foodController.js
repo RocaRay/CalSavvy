@@ -35,11 +35,11 @@ module.exports = {
           console.log('get error');
           return res.status(400).send('Error retrieving data.')
         }
-        if (result) {
-          console.log('get success', result);
-          return res.status(200).send(result)
-        }
-      })
+        // if (result) {
+        //   console.log('get success', result);
+        //   return res.status(200).send(result)
+        // }
+      }).then((result) => res.status(200).send(result))
         
       })
   },

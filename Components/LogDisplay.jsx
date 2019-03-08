@@ -42,7 +42,7 @@ class LogDisplay extends Component {
           <div className="LogRowItem">
             {new Date(dayObj.date).toLocaleString()}
           </div>
-          <div className="LogRowItem">
+          <div className="LogRowItem" id="eatenColumn">
             {eatenArray} 
           </div>
           <div className="LogRowItem">

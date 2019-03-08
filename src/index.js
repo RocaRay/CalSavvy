@@ -4,20 +4,21 @@ require('./index.css');
 import FoodDisplay from '../Components/FoodDisplay.jsx';
 import LogDisplay from '../Components/LogDisplay.jsx';
 import HookedButtonsContainer from '../Components/HookedButtonsContainer.jsx';
+import HookedLogDisplay from '../Components/HookedLogDisplay.jsx';
 
 const App = () => {
   const[state, setState] = useState({
     eaten: {},
     totalCalories: 0,
     detailedCalories: {},
-    mode: "track" 
+    totalWater: 0,
   })
   const [mode, setMode] = useState("track");
   
   let topContainer;
   if (mode === "track") {
     topContainer = (<div className="container">
-    <FoodDisplay eaten={state.eaten} totalCalories={state.totalCalories} detailedCalories={state.detailedCalories} state={state}/>
+    <FoodDisplay eaten={state.eaten} totalWater={state.totalWater} totalCalories={state.totalCalories} detailedCalories={state.detailedCalories} state={state}/>
   </div>)
   }
   if (mode === "log") {

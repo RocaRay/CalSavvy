@@ -63,6 +63,14 @@ body{
   margin: 3px;
 }
 
+#waterform{
+  margin-top: 1em;
+}
+
+#waterform > input{
+  margin-top: 3px;
+}
+
 button{
   height: 40px;
   width: 15s0px;
@@ -92,6 +100,15 @@ button:hover{
   padding: 10px;
 }
 
+#TotalWaterDisplay{
+  float: left;
+  margin-left: 10%;
+  background: rgba(15, 48, 129, 0.849);
+  color: white;
+  border: 1px solid;
+  padding: 10px;
+}
+
 #LogDayButton{
   color: white;
   background: blue;
@@ -102,7 +119,7 @@ button:hover{
   background: purple;
 }
 
-#DeleteLogsButton{
+#DeleteLogsButton, #ResetButton{
   color: white;
   background: red;
 }
@@ -163,4 +180,8 @@ button:hover{
 
 .eatenItem{
   margin: 0.1em;
+}
+
+#eatenColumn{
+  width: 10em;
 }

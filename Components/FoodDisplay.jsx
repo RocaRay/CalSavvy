@@ -34,6 +34,7 @@ const FoodDisplay = props => {
           <div>{caloriesArray}</div>
         </div>
       </div>
+      {/* <p id="TotalWaterDisplay">Total Water: {props.totalWater}</p> */}
       <p id="TotalCaloriesDisplay">Total Calories: {props.totalCalories}</p>
     </div>
     

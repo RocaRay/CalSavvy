@@ -19,9 +19,10 @@ const HookedButtonsContainer = props => {
     setmodalStatus(false);
   }
 
-  const addItemAndCalories = (item, amount) => {
+  const addItemAndCalories = (item, amount, waterAmount) => {
     let newEaten = {...props.state.eaten};
     let newCalories = props.state.totalCalories + amount;
+    let newTotalWater = props.state.TotalWater + waterAmount;
     let newDetailedCalories = {...props.state.detailedCalories};
     if (!newEaten[item]) newEaten[item] = 1;
     else newEaten[item] += 1;
@@ -41,7 +42,7 @@ const HookedButtonsContainer = props => {
     let formattedfoodinput = foodinput.replace( foodinput[0], foodinput[0].toUpperCase()); //guarantee capitalized first letter
     let calorieinput = Number(document.getElementById('calorieinput').value);
     addItemAndCalories(formattedfoodinput, calorieinput);
-    foodinput = '';
+    document.getElementById('foodinput').value = '';
     document.getElementById('calorieinput').value = '';
   }
 
@@ -59,7 +60,6 @@ const HookedButtonsContainer = props => {
       })
     }).then(response => response.json());
     props.setState({
-      ...props.state,
       eaten: {},
       totalCalories: 0,
       detailedCalories: {}
@@ -92,20 +92,25 @@ const HookedButtonsContainer = props => {
 
     return (
       <div>
-        <FoodButton src={bagelImage} name="Bagel" calorieAmount={240} setState={props.setState} state={props.state} addItemAndCalories={addItemAndCalories}/>
-        <FoodButton src={appleImage} name="Apple" calorieAmount={80} setState={props.setState} state={props.state} addItemAndCalories={addItemAndCalories}/>
-        <FoodButton src={bananaImage} name="Banana" calorieAmount={105} setState={props.setState} state={props.state} addItemAndCalories={addItemAndCalories}/>
-        <FoodButton src={cupNoodlesImage} name="Cup Noodles" calorieAmount={290} setState={props.setState} state={props.state} addItemAndCalories={addItemAndCalories}/>
-        <FoodButton src={welchsImage} name="Welch's" calorieAmount={130} setState={props.setState} state={props.state} addItemAndCalories={addItemAndCalories}/>
-        <FoodButton src={takisImage} name="Takis" calorieAmount={180} setState={props.setState} state={props.state} addItemAndCalories={addItemAndCalories}/>
+        <FoodButton src={bagelImage} name="Bagel" calorieAmount={240} setState={props.setState} state={props.state} addItemAndCalories={addItemAndCalories} mode={props.mode}/>
+        <FoodButton src={appleImage} name="Apple" calorieAmount={80} setState={props.setState} state={props.state} addItemAndCalories={addItemAndCalories} mode={props.mode}/>
+        <FoodButton src={bananaImage} name="Banana" calorieAmount={105} setState={props.setState} state={props.state} addItemAndCalories={addItemAndCalories} mode={props.mode}/>
+        <FoodButton src={cupNoodlesImage} name="Cup Noodles" calorieAmount={290} setState={props.setState} state={props.state} addItemAndCalories={addItemAndCalories} mode={props.mode}/>
+        <FoodButton src={welchsImage} name="Welch's" calorieAmount={130} setState={props.setState} state={props.state} addItemAndCalories={addItemAndCalories} mode={props.mode}/>
+        <FoodButton src={takisImage} name="Takis" calorieAmount={180} setState={props.setState} state={props.state} addItemAndCalories={addItemAndCalories} mode={props.mode}/>
         <div id="lowerButtonsContainer">
           <form id="customInputForm" onSubmit={formSubmitfx}>
             <input id="foodinput" type="text" placeholder="Enter food" required></input>
             <input id="calorieinput" type="number" placeholder="Enter calories" required></input>
             <input id="customsubmit" type="submit"></input>
           </form>
+          {/* <form id="waterform" onSubmit={waterformSubmitfx}>
+            <input id="waterinput" type="number" placeholder="oz."></input>
+            <input type="submit" value="Submit Water"></input>
+          </form> */}
           <button id="LogDayButton" onClick={logDay}>Log Day</button>
-          <button id="ShowAllDaysButton" onClick={toggleDisplay}>Show All Days</button>
+          <button id="ShowAllDaysButton" onClick={toggleDisplay}>{props.mode === "track" ? 'Show All Days' : 'Show Tracker'}</button>
+          <button id="ResetButton" onClick={() => props.setState({eaten: {}, totalCalories: 0, detailedCalories: {}})}>Reset Current Day</button>
           <button id="DeleteLogsButton" onClick={() => setmodalStatus(true)}>Delete All Logs</button>
           <Modal className="modal" isOpen={modalStatus}>
             <p>Are you sure you want to delete your data?</p>
